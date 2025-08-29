@@ -825,73 +825,73 @@
                 </div>
             </div>
             
-            <!-- FORMULARIO DE CONTACTO -->
-            <div class="col-lg-8">
-                <div class="card-modern contact-form-card">
-                    <h4 class="mb-3 text-center text-dark">Envíame un Mensaje</h4>
-                    
-                    <form class="contact-form" action="https://formspree.io/f/xdkogepj" method="POST" novalidate>
-                        <div class="row g-3">
-                            <!-- NOMBRE -->
-                            <div class="col-md-6">
-                                <label for="firstName" class="form-label text-dark fw-medium">Nombre *</label>
-                                <input type="text" class="form-control modern-input" id="firstName" name="firstName" required>
-                                <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
-                            </div>
-                            
-                            <!-- APELLIDO -->
-                            <div class="col-md-6">
-                                <label for="lastName" class="form-label text-dark fw-medium">Apellido *</label>
-                                <input type="text" class="form-control modern-input" id="lastName" name="lastName" required>
-                                <div class="invalid-feedback">Por favor ingresa tu apellido.</div>
-                            </div>
-                            
-                            <!-- EMAIL -->
-                            <div class="col-12">
-                                <label for="email" class="form-label text-dark fw-medium">Email *</label>
-                                <div class="input-group">
-                                    <span class="input-group-text modern-input-group">
-                                        <i class="bi bi-envelope"></i>
-                                    </span>
-                                    <input type="email" class="form-control modern-input" id="email" name="_replyto" required>
-                                    <div class="invalid-feedback">Por favor ingresa un email válido.</div>
-                                </div>
-                            </div>
-                            
-                            <!-- ASUNTO -->
-                            <div class="col-12">
-                                <label for="subject" class="form-label text-dark fw-medium">Asunto *</label>
-                                <select class="form-select modern-input" id="subject" name="_subject" required>
-                                    <option value="">Selecciona un asunto...</option>
-                                    <option value="Propuesta de Proyecto">Propuesta de Proyecto</option>
-                                    <option value="Colaboración">Colaboración</option>
-                                    <option value="Oportunidad Laboral">Oportunidad Laboral</option>
-                                    <option value="Consulta General">Consulta General</option>
-                                    <option value="Otro">Otro</option>
-                                </select>
-                                <div class="invalid-feedback">Por favor selecciona un asunto.</div>
-                            </div>
-                            
-                            <!-- MENSAJE -->
-                            <div class="col-12">
-                                <label for="message" class="form-label text-dark fw-medium">Mensaje *</label>
-                                <textarea class="form-control modern-input" id="message" name="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
-                                <div class="invalid-feedback">Por favor escribe un mensaje.</div>
-                            </div>
-                            
-                            <!-- BOTÓN ENVIAR -->
-                            <div class="col-12 text-center mt-3">
-                                <button type="submit" class="btn btn-lg px-4 submit-btn">
-                                    <i class="bi bi-send me-2"></i>
-                                    Enviar Mensaje
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <!-- FORMULARIO DE CONTACTO (Apps Script) -->
+<div class="col-lg-8">
+  <div class="card-modern contact-form-card">
+    <h4 class="mb-3 text-center text-dark">Envíame un Mensaje</h4>
+
+    <!-- SIN action / method: lo maneja js/contact.js -->
+    <form id="contactForm" class="contact-form" novalidate>
+      <div class="row g-3">
+        <!-- NOMBRE -->
+        <div class="col-md-6">
+          <label for="firstName" class="form-label text-dark fw-medium">Nombre *</label>
+          <input type="text" class="form-control modern-input" id="firstName" required>
+          <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
         </div>
-    </div>
+
+        <!-- APELLIDO -->
+        <div class="col-md-6">
+          <label for="lastName" class="form-label text-dark fw-medium">Apellido *</label>
+          <input type="text" class="form-control modern-input" id="lastName" required>
+          <div class="invalid-feedback">Por favor ingresa tu apellido.</div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="col-12">
+          <label for="email" class="form-label text-dark fw-medium">Email *</label>
+          <div class="input-group">
+            <span class="input-group-text modern-input-group">
+              <i class="bi bi-envelope"></i>
+            </span>
+            <input type="email" class="form-control modern-input" id="email" required>
+            <div class="invalid-feedback">Por favor ingresa un email válido.</div>
+          </div>
+        </div>
+
+        <!-- ASUNTO -->
+        <div class="col-12">
+          <label for="subject" class="form-label text-dark fw-medium">Asunto *</label>
+          <select class="form-select modern-input" id="subject" required>
+            <option value="">Selecciona un asunto...</option>
+            <option>Propuesta de Proyecto</option>
+            <option>Colaboración</option>
+            <option>Oportunidad Laboral</option>
+            <option>Consulta General</option>
+            <option>Otro</option>
+          </select>
+          <div class="invalid-feedback">Por favor selecciona un asunto.</div>
+        </div>
+
+        <!-- MENSAJE -->
+        <div class="col-12">
+          <label for="message" class="form-label text-dark fw-medium">Mensaje *</label>
+          <textarea class="form-control modern-input" id="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          <div class="invalid-feedback">Por favor escribe un mensaje.</div>
+        </div>
+
+        <!-- BOTÓN ENVIAR -->
+        <div class="col-12 text-center mt-3">
+          <button type="submit" class="btn btn-lg px-4 submit-btn">
+            <i class="bi bi-send me-2"></i>
+            Enviar Mensaje
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
 </section>
 
 <script>
@@ -1050,4 +1050,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
+
 </html>
