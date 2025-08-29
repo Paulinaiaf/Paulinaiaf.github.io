@@ -1,4 +1,4 @@
-const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzYU45bGbN3_XcEtYuJuF314oyta2QF0j3aWhiu8m0WlaIqorefzI8FEhkQL5xRl_I3fg/exec";
+const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwp-o35fkDcGvOug7Pk2zNb_9JVSkYLbyX64T4PstBCsrsh6SEuUi1CMK1HKqqM2RIC5w/exec";
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
