@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Particles.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Anime.js para animaciones -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- EmailJS para formulario de contacto -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <title>Paulina Altamirano - Portfolio</title>
+    
+    <style> 
+        /* VARIABLES CSS PARA CONSISTENCIA */
+        :root {
+            --primary-blue: #4A90E2;
+            --secondary-purple: #7B68EE;
+            --accent-cyan: #40E0D0;
+            --dark-blue: #2C5F8B;
+            --dark-purple: #4A4A7A;
+            --dark-cyan: #2B6B6B;
+        }
+
+        /* ESTILOS GENERALES */
+        body {
+            padding-top: 80px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* CONTENEDORES PARA PARTÍCULAS */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* FONDO DE PARTÍCULAS */
+        .particles-section {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR MODERNO */
+        .navbar {
+            background: linear-gradient(135deg, #4A90E2 0%, #7B68EE 100%) !important;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(74, 144, 226, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto de brillo sutil en el navbar */
+        .navbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: navbarShine 4s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes navbarShine {
+            0%, 100% { left: -100%; }
+            50% { left: 100%; }
+        }
+
+        .navbar-brand img {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            filter: brightness(1.2) drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5));
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.15) rotate(8deg);
+            filter: brightness(1.3) drop-shadow(0 6px 20px rgba(255, 255, 255, 0.7));
+        }
+
+        .navbar-nav .nav-link {
+            margin: 0 6px;
+            padding: 10px 20px !important;
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+            color: white !important;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar-nav .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+            border-radius: 25px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background: rgba(255, 255, 255, 0.25) !important;
+            color: white !important;
+            transform: translateY(-3px) scale(1.08);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .navbar-nav .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .navbar-nav .nav-link.active {
+            background: rgba(255, 255, 255, 0.3) !important;
+            color: white !important;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* ANIMACIONES GLOBALES */
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-typewriter {
+            animation: typewriter 2s ease-out;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .hover-scale {
+            transition: all 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-up:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in-up:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in-up:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* SECCIONES */
+        .scrollspy-section {
+            min-height: 80vh;
+            padding: 100px 0;
+        }
+
+        /* TARJETAS MODERNAS */
+        .card-modern {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 144, 226, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-modern:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(74, 144, 226, 0.2);
+            border-color: var(--primary-blue);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card-modern:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* HABILIDADES TÉCNICAS */
+        .skill-card {
+            padding: 1rem;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+            padding: 8px;
+        }
+
+        .skill-image {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.5);
+        }
+
+        .skill-card:hover .skill-image {
+            transform: scale(1.1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(74, 144, 226, 0.25);
+        }
+
+        /* BARRAS DE PROGRESO */
+        .skill-level {
+            width: 100%;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            border-radius: 10px;
+            transition: width 2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 2s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* FORMULARIO DE CONTACTO */
+        .contact-form-card {
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .modern-input {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .modern-input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.25rem rgba(74, 144, 226, 0.15);
+            background: white;
+            transform: scale(1.02);
+        }
+
+        .modern-input-group {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            border: none;
+            color: white;
+            border-radius: 12px 0 0 12px;
+        }
+
+        .input-group .modern-input {
+            border-left: none;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            border: none;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 40px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(74, 144, 226, 0.5);
+            background: linear-gradient(135deg, #3A80D2 0%, #6B58DE 100%);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* VALIDACIÓN DEL FORMULARIO */
+        .form-control.is-invalid {
+            border-color: #dc3545;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .form-control.is-valid {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.15);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* INFORMACIÓN DE CONTACTO SIN CAJAS */
+        .contact-info-item {
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-info-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item:hover .contact-info-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.6);
+        }
+
+        .contact-info-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info-text {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ESTILOS PARA ENLACES DE CONTACTO */
+        .contact-info-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-link:hover .contact-info-item {
+            transform: translateY(-8px) scale(1.05);
+        }
+
+        .contact-info-link:hover .contact-info-icon {
+            transform: scale(1.2) rotate(10deg);
+            box-shadow: 0 12px 40px rgba(74, 144, 226, 0.8);
+            background: linear-gradient(135deg, #40E0D0 0%, #4A90E2 100%);
+        }
+
+        .contact-info-link:hover .contact-info-title,
+        .contact-info-link:hover .contact-info-text {
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* FONDO PARA SECCIÓN CONTACTO */
+        .contact-gradient {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--dark-purple) 50%, var(--dark-cyan) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            z-index: 1;
+        }
+
+        .contact-gradient::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-size: 60px 60px;
+            z-index: 1;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .skill-card {
+                min-height: 140px;
+                padding: 0.75rem;
+            }
+            
+            .skill-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .skill-image {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar-scrollspy" data-bs-offset="100">
+
+<!-- NAVBAR -->
+<nav id="navbar-scrollspy" class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#home">
+            <img src="logoPAmorado.png" alt="Paulina" width="66" height="60">
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active fw-medium" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium" href="#resume">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium" href="#skills">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="scrollspy-section vh-100 d-flex align-items-center particles-section">
+    <div id="particles-js"></div>
+    
+    <div class="container content-overlay">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center text-white">
+                <h1 class="display-2 fw-bold mb-4 animate-fade-in">
+                    <span class="line">Paulina</span><br>
+                    <span class="line">Altamirano Flores</span>
+                </h1>
+                
+                <p class="lead mb-4 animate-typewriter">Estudiante de Ingeniería Civil en Informática y Telecomunicaciones</p>
+                <p class="mb-5 animate-fade-in" style="animation-delay: 0.5s;">Apasionada por el desarrollo web, la programación y el manejo de datos, con interés en los sistemas de telecomunicaciones que permiten conectar y potenciar la tecnología.</p>
+                <div class="animate-fade-in" style="animation-delay: 1s;">
+                 <!--   <a href="#resume" class="btn btn-light btn-lg me-3 hover-scale">
+                        <i class="bi bi-download"></i> Ver CV
+                    </a>   -->
+                    <a href="#contact" class="btn btn-outline-light btn-lg hover-scale">
+                        <i class="bi bi-chat-dots"></i> Contactar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" class="py-5 d-flex align-items-center" style="min-height: 80vh;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="mb-5">Sobre Mí</h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 fade-in-up">
+                <div class="card-modern text-center">
+                    <div class="card-icon">
+                        <i class="bi bi-person-heart"></i>
+                    </div>
+                    <h5 class="mb-3">Perfil Personal</h5>
+                    <p>Estudiante con visión innovadora y experiencia como ayudante, desarrollando habilidades de liderazgo y colaboración para aportar con soluciones tecnológicas de impacto social.</p>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in-up">
+                <div class="card-modern text-center">
+                    <div class="card-icon">
+                        <i class="bi bi-code-slash"></i>
+                    </div>
+                    <h5 class="mb-3">Stack Tecnológico</h5>
+                    <p>Python, JavaScript, HTML/CSS, MySQL, Wireshark, Cisco Packet Tracer, Linux, Microsoft Office, Visual Studio Code, GitHub, Inteligencia Artificial.</p>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in-up">
+                <div class="card-modern text-center">
+                    <div class="card-icon">
+                        <i class="bi bi-trophy"></i>
+                    </div>
+                    <h5 class="mb-3">Logros</h5>
+                    <p>Experiencia como ayudante académica, fortaleciendo habilidades de comunicación y liderazgo, junto con certificaciones continuas en informática y desarrollo web.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="scrollspy-section bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="mb-5">Habilidades Técnicas</h2>
+            </div>
+        </div>
+        
+        <!-- LENGUAJES DE PROGRAMACIÓN -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h4 class="text-center mb-4 text-muted">Lenguajes de Programación</h4>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="skill-image">
+                    </div>
+                    <h6 class="mb-2 fw-bold">Python</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 50%" data-skill="70"></div>
+                        </div>
+                        <small class="text-muted">Intermedio</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-image">
+                    </div>
+                    <h6 class="mb-2 fw-bold">JavaScript</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%" data-skill="80"></div>
+                        </div>
+                        <small class="text-muted">Avanzado</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="skill-image">
+                    </div>
+                    <h6 class="mb-2 fw-bold">HTML5</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%" data-skill="90"></div>
+                        </div>
+                        <small class="text-muted">Experto</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="skill-image">
+                    </div>
+                    <h6 class="mb-2 fw-bold">CSS3</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%" data-skill="85"></div>
+                        </div>
+                        <small class="text-muted">Avanzado</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HERRAMIENTAS Y SISTEMAS -->
+        <div class="row">
+            <div class="col-12">
+                <h4 class="text-center mb-4 text-muted">Herramientas & Sistemas</h4>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-image">
+                    </div>
+                    <h6 class="mb-2 fw-bold">MySQL</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%" data-skill="80"></div>
+                        </div>
+                        <small class="text-muted">Avanzado</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="skill-image">
+                    </div>
+                    <h6 class="mb-2 fw-bold">Linux</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%" data-skill="70"></div>
+                        </div>
+                        <small class="text-muted">Intermedio</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <div style="width: 30px; height: 30px; background: linear-gradient(135deg, #1f5582, #3578c4); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 8px;">WS</div>
+                    </div>
+                    <h6 class="mb-2 fw-bold">Wireshark</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%" data-skill="70"></div>
+                        </div>
+                        <small class="text-muted">Intermedio</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <div style="width: 30px; height: 30px; background: linear-gradient(135deg, #0078d4, #106ebe); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 8px;">PT</div>
+                    </div>
+                    <h6 class="mb-2 fw-bold">Cisco Packet Tracer</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%" data-skill="60"></div>
+                        </div>
+                        <small class="text-muted">Intermedio</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <div style="width: 30px; height: 30px; background: linear-gradient(135deg, #d83b01, #ff6b35); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 8px;">MS</div>
+                    </div>
+                    <h6 class="mb-2 fw-bold">Microsoft Office</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%" data-skill="90"></div>
+                        </div>
+                        <small class="text-muted">Experto</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in-up">
+                <div class="card-modern text-center skill-card">
+                    <div class="skill-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="skill-image">
+                    </div>
+                    <h6 class="mb-2 fw-bold">GitHub</h6>
+                    <div class="skill-level">
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%" data-skill="80"></div>
+                        </div>
+                        <small class="text-muted">Intermedio</small>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="scrollspy-section contact-gradient py-5">
+    <div class="container content-overlay">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="mb-5 text-white">Contacto</h2>
+                <p class="lead mb-5 text-white">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+            </div>
+        </div>
+        
+        <div class="row g-5">
+            <!-- INFORMACIÓN DE CONTACTO -->
+            <div class="col-lg-4">
+                <div class="row g-4">
+                    <div class="col-12 fade-in-up">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <h6 class="contact-info-title">Ubicación</h6>
+                            <p class="contact-info-text">Santiago, Chile</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 fade-in-up">
+                        <a href="mailto:Paulina.altamirano@mail.udp.cl" class="text-decoration-none">
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="bi bi-envelope"></i>
+                                </div>
+                                <h6 class="contact-info-title">Correo</h6>
+                                <p class="contact-info-text">Paulina.altamirano@mail.udp.cl</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="col-12 fade-in-up">
+                        <a href="https://www.linkedin.com/in/paulina-altamirano-flores-" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="bi bi-linkedin"></i>
+                                </div>
+                                <h6 class="contact-info-title">LinkedIn</h6>
+                                <p class="contact-info-text">Paulina Altamirano Flores</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FORMULARIO DE CONTACTO -->
+            <div class="col-lg-8">
+                <div class="card-modern contact-form-card">
+                    <h4 class="mb-3 text-center text-dark">Envíame un Mensaje</h4>
+                    
+                    <form class="contact-form" action="https://formspree.io/f/xdkogepj" method="POST" novalidate>
+                        <div class="row g-3">
+                            <!-- NOMBRE -->
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label text-dark fw-medium">Nombre *</label>
+                                <input type="text" class="form-control modern-input" id="firstName" name="firstName" required>
+                                <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
+                            </div>
+                            
+                            <!-- APELLIDO -->
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label text-dark fw-medium">Apellido *</label>
+                                <input type="text" class="form-control modern-input" id="lastName" name="lastName" required>
+                                <div class="invalid-feedback">Por favor ingresa tu apellido.</div>
+                            </div>
+                            
+                            <!-- EMAIL -->
+                            <div class="col-12">
+                                <label for="email" class="form-label text-dark fw-medium">Email *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text modern-input-group">
+                                        <i class="bi bi-envelope"></i>
+                                    </span>
+                                    <input type="email" class="form-control modern-input" id="email" name="_replyto" required>
+                                    <div class="invalid-feedback">Por favor ingresa un email válido.</div>
+                                </div>
+                            </div>
+                            
+                            <!-- ASUNTO -->
+                            <div class="col-12">
+                                <label for="subject" class="form-label text-dark fw-medium">Asunto *</label>
+                                <select class="form-select modern-input" id="subject" name="_subject" required>
+                                    <option value="">Selecciona un asunto...</option>
+                                    <option value="Propuesta de Proyecto">Propuesta de Proyecto</option>
+                                    <option value="Colaboración">Colaboración</option>
+                                    <option value="Oportunidad Laboral">Oportunidad Laboral</option>
+                                    <option value="Consulta General">Consulta General</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                                <div class="invalid-feedback">Por favor selecciona un asunto.</div>
+                            </div>
+                            
+                            <!-- MENSAJE -->
+                            <div class="col-12">
+                                <label for="message" class="form-label text-dark fw-medium">Mensaje *</label>
+                                <textarea class="form-control modern-input" id="message" name="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                <div class="invalid-feedback">Por favor escribe un mensaje.</div>
+                            </div>
+                            
+                            <!-- BOTÓN ENVIAR -->
+                            <div class="col-12 text-center mt-3">
+                                <button type="submit" class="btn btn-lg px-4 submit-btn">
+                                    <i class="bi bi-send me-2"></i>
+                                    Enviar Mensaje
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Configuración de partículas
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar partículas solo si el elemento existe
+    if (document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#ffffff'
+                },
+                shape: {
+                    type: 'circle'
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false
+                },
+                size: {
+                    value: 3,
+                    random: true
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+    }
+
+    // Animaciones con Anime.js
+    if (typeof anime !== 'undefined') {
+        anime({
+            targets: '.line',
+            translateY: [50, 0],
+            opacity: [0, 1],
+            easing: "easeOutExpo",
+            duration: 1200,
+            delay: anime.stagger(400)
+        });
+    }
+
+    // Animación de barras de progreso
+    const observerOptions = {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const progressObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const progressBars = entry.target.querySelectorAll('.skill-progress');
+                progressBars.forEach(bar => {
+                    const targetWidth = bar.getAttribute('data-skill') + '%';
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = targetWidth;
+                    }, 200);
+                });
+                progressObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+        progressObserver.observe(skillsSection);
+    }
+
+    
+
+        // Efectos de focus
+        const inputs = contactForm.querySelectorAll('.modern-input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                if (this.parentElement.classList.contains('input-group')) {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                } else {
+                    this.style.transform = 'scale(1.02)';
+                }
+            });
+            
+            input.addEventListener('blur', function() {
+                if (this.parentElement.classList.contains('input-group')) {
+                    this.parentElement.style.transform = 'scale(1)';
+                } else {
+                    this.style.transform = 'scale(1)';
+                }
+            });
+        });
+    
+
+    // Actualizar navbar activo
+    window.addEventListener('scroll', function() {
+        let current = '';
+        document.querySelectorAll('section').forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollY >= sectionTop - 85) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
